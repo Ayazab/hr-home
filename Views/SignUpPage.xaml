@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HR_One.Views.SignUpPage"
+             xmlns:viewModel="clr-namespace:HR_One.ViewModel.SignUp"
+             Title="HR-One">
+
+    <ContentPage.BindingContext>
+        <viewModel:SignUpViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <StackLayout Margin="15">
+            <Label Text="Sign up"
+                   Style="{StaticResource titleLabelStyle}"/>
+            <Label Text="Email"
+                   Style="{StaticResource labelStyle}"/>
+            <Entry Placeholder="Enter your email address"
+                   Text="{Binding Email}"
+                   Style="{StaticResource entryStyle}"/>
+            <Label Text="Username"
+                   Style="{StaticResource labelStyle}"/>
+            <Entry Placeholder="Enter your username"
+                   Text="{Binding Username}"
+                   Style="{StaticResource entryStyle}"/>
+            <Label Text="Password"
+                   Style="{StaticResource labelStyle}"/>
+            <Entry Placeholder="Enter your password"
+                   Text="{Binding Password}"
+                   Style="{StaticResource entryStyle}"/>
+            <Label Text="Confirm Password"
+                   Style="{StaticResource labelStyle}"/>
+            <Entry Placeholder="Confirm your password"
+                   Text="{Binding ConfirmPassword}"
+                   Style="{StaticResource entryStyle}"/>
+
+            <Button Text="Register"
+                    Command="{Binding RegisterCommand}"
+                    Style="{StaticResource buttonStyle}"
+                    Margin="0,18"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Spacing="8"
+                                   VerticalOptions="EndAndExpand">
+                <Label Text="Already have an account?"
+                       FontAttributes="Bold"/>
+                <Label Text="Sign in"
+                       FontSize="15"
+                       Style="{StaticResource blueLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

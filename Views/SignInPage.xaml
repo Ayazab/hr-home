@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HR_One.Views.SignInPage"
+             xmlns:viewModel="clr-namespace:HR_One.ViewModel.SignIn"
+             Title="HR-One">
+
+    <ContentPage.BindingContext>
+        <viewModel:SignInViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Margin="15">
+            <Label Text="Sign in"
+                   Style="{StaticResource titleLabelStyle}"/>
+            <Label Text="Email"
+                   Style="{StaticResource labelStyle}"/>
+            <Entry Placeholder="Enter your email address"
+                   Text="{Binding Email}"
+                   Style="{StaticResource entryStyle}"/>
+            <Label Text="Password"
+                   Style="{StaticResource labelStyle}"/>
+            <Entry Placeholder="Enter your password"
+                   Text="{Binding Password}"
+                   Style="{StaticResource entryStyle}"/>
+
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,10,0,45">
+                <CheckBox/>
+                <Label Text="Remember Me"
+                       VerticalOptions="Center"
+                       FontSize="14.5"
+                       />
+                <Label Text="Forgot Password?"
+                       Style="{StaticResource blueLabelStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+
+            <Button Text="Login"
+                    Command="{Binding LoginCommand}"
+                    Style="{StaticResource buttonStyle}"/>
+            <Label Text="Or Continue With"
+                   HorizontalOptions="Center"
+                   FontSize="15"
+                   Margin="0,25"
+                   FontFamily="Roboto-Medium"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Spacing="25">
+                <Image Source="google"
+                       HeightRequest="45"/>
+                <Image Source="facebook"
+                       HeightRequest="45"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Spacing="8"
+                                   VerticalOptions="EndAndExpand">
+                <Label Text="Don't have an account?"
+                       FontAttributes="Bold"/>
+                <Label Text="Register Here"
+                       FontSize="15"
+                       Style="{StaticResource blueLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

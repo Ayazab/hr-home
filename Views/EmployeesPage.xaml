@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HR_One.Views.EmployeeDetailsPage"
+             xmlns:viewModel="clr-namespace:HR_One.ViewModel.Emp"
+             Title="EmployeeDetailsPage"
+             BackgroundColor="LightGray">
+
+    <ContentPage.BindingContext>
+        <viewModel:EmployeeViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid Margin="15,20">
+        <ActivityIndicator IsRunning="{Binding IsRunning}"
+                           HeightRequest="50"
+                           VerticalOptions="CenterAndExpand"/>
+        <CollectionView ItemsSource="{Binding EmployeeDetails}"
+                        EmptyView="No Employees Found"
+                        IsVisible="{Binding IsVisible}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedItem}"
+                        SelectionChangedCommand="{Binding SelectionChangeCommand}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="15"
+                                   Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    
+                    <StackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor"
+                                                Value="LightGray"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        
+                        <Border Padding="12"
+                                StrokeShape="RoundRectangle 10">
+                        <Grid ColumnDefinitions="25,*"
+                              ColumnSpacing="8"
+                              RowDefinitions="auto,auto,auto"
+                              RowSpacing="5">
+                            <Image Source="{Binding Gender}"
+                                   HeightRequest="16"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="0,0,0,7"/>
+                            <Label Text="{Binding Name}"
+                                   TextColor="CornflowerBlue"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   FontFamily="Roboto-Medium"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   Margin="0,0,0,7"/>
+                            <Image Source="designation"
+                                   HeightRequest="17"
+                                   Grid.Row="1"
+                                   Grid.Column="0"/>
+                            <Label Text="{Binding Designation}"
+                                   TextColor="Coral"
+                                   FontSize="14"
+                                   FontFamily="Roboto-Regular"
+                                   Grid.Row="1"
+                                   Grid.Column="1"/>
+                            <Image Source="email"
+                                   HeightRequest="17"
+                                   Margin="0,2,0,0"
+                                   Grid.Row="2"
+                                   Grid.Column="0"/>
+                            <Label Text="{Binding Email}"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   VerticalOptions="Center"
+                                   Grid.Row="2"
+                                   Grid.Column="1"/>
+                        </Grid>
+                              
+                        </Border>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    
+</ContentPage>
