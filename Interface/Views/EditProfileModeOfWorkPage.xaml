@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeskBook.Views.EditProfileModeOfWorkPage"
+             xmlns:behaviors="clr-namespace:DeskBook"
+             xmlns:viewModel="clr-namespace:DeskBook"
+             Title="EditProfileModeOfWorkPage">
+
+    <ContentPage.BindingContext>
+        <viewModel:EditProfileModeOfWorkViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout Margin="0.50">
+        <Picker Title="Select an option" 
+                ItemsSource="{Binding Options}"
+                SelectedItem="{Binding SelectedOption}">
+        </Picker>
+
+        <CollectionView IsVisible="{Binding IsHybridSelected}"
+                        ItemsSource="{Binding HybridModeDaysDetails}"
+                        SelectionChanged=""
+                        SelectionMode="Multiple"
+                        x:Name="collectionView"
+                        Margin="5,0">
+            <CollectionView.Behaviors>
+                <behaviors:LimitSelectionBehavior MaxSelectedItems="4" />
+            </CollectionView.Behaviors>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                                           ItemSpacing="15"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border StrokeShape="RoundRectangle 10"
+                                    WidthRequest="70"
+                                    BackgroundColor="{Binding BgColor}"
+                                    Padding="0,20"
+                                    StrokeThickness="0"
+                                    x:Name="Border"
+                            
+                            IsEnabled="{Binding IsSelected}">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="Border.BackgroundColor"
+                                        Value="#2880FC"
+                                        TargetName="Border"/>
+                                        <Setter Property="Label.TextColor"
+                                        Value="White"
+                                        TargetName="Label"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Label Text="{Binding Day}"
+                                       HorizontalOptions="Center"
+                                       TextColor="#8694AA"
+                               BackgroundColor="Red"
+                               FontFamily="Inter-SemiBold"
+                                       FontAttributes="Bold"
+                                       FontSize="15"
+                                       x:Name="Label"/>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>
